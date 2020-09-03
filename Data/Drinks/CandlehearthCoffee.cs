@@ -67,7 +67,7 @@ namespace BleakwindBuffet.Data.Drinks
 
         public override string ToString()
         {
-            return $"{size} Candlehearth Coffee";
+            return $"{size} {(decaf ? "Decaf" : "")} Candlehearth Coffee";
         }
     }
 }
