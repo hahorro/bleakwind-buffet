@@ -106,7 +106,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{size} {(decaf ? "Decaf" : "")} Candlehearth Coffee";
+            return $"{size} {(decaf ? "Decaf " : "")}Candlehearth Coffee";
         }
     }
 }

@@ -7,6 +7,7 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Sides;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -15,16 +16,27 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [Fact]
         public void ShouldBeSmallByDefault()
         {
+            var side = new DragonbornWaffleFries();
+            Assert.Equal(Size.Small, side.Size);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSize()
         {
+            var side = new DragonbornWaffleFries();
+            side.Size = Size.Large;
+            Assert.Equal(Size.Large, side.Size);
+            side.Size = Size.Medium;
+            Assert.Equal(Size.Medium, side.Size);
+            side.Size = Size.Small;
+            Assert.Equal(Size.Small, side.Size);
         }
 
         [Fact]
         public void ShouldReturnCorrectSpecialInstructions()
         {
+            var side = new DragonbornWaffleFries();
+            Assert.Empty(side.SpecialInstructions);
         }
 
         [Theory]
@@ -33,6 +45,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 0.96)]
         public void ShouldReturnCorrectPriceBasedOnSize(Size size, double price)
         {
+            var side = new DragonbornWaffleFries();
+            side.Size = size;
+            Assert.Equal(price, side.Price);
         }
 
         [Theory]
@@ -41,6 +56,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, 100)]
         public void ShouldReturnCorrectCaloriesBasedOnSize(Size size, uint calories)
         {
+            var side = new DragonbornWaffleFries();
+            side.Size = size;
+            Assert.Equal(calories, side.Calories);
         }
 
         [Theory]
@@ -49,6 +67,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         [InlineData(Size.Large, "Large Dragonborn Waffle Fries")]
         public void ShouldReturnCorrectToStringBasedOnSize(Size size, string name)
         {
+            var side = new DragonbornWaffleFries();
+            side.Size = size;
+            Assert.Equal(name, side.ToString());
         }
     }
 }

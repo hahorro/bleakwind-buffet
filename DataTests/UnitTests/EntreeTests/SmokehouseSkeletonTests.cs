@@ -6,6 +6,7 @@
 using Xunit;
 
 using BleakwindBuffet.Data;
+using BleakwindBuffet.Data.Entrees;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -14,51 +15,83 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         [Fact]
         public void ShouldInlcudeSausageByDefault()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.True(entree.SausageLink);
         }
 
         [Fact]
         public void ShouldInlcudeEggByDefault()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.True(entree.Egg);
         }
 
         [Fact]
         public void ShouldInlcudeHashbrownsByDefault()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.True(entree.HashBrowns);
         }
 
         [Fact]
         public void ShouldInlcudePancakeByDefault()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.True(entree.Pancake);
         }
 
         [Fact]
         public void ShouldBeAbleToSetSausage()
         {
+            var entree = new SmokehouseSkeleton();
+            entree.SausageLink = false;
+            Assert.False(entree.SausageLink);
+            entree.SausageLink = true;
+            Assert.True(entree.SausageLink);
         }
 
         [Fact]
         public void ShouldBeAbleToSetEgg()
         {
+            var entree = new SmokehouseSkeleton();
+            entree.Egg = false;
+            Assert.False(entree.Egg);
+            entree.Egg = true;
+            Assert.True(entree.Egg);
         }
 
         [Fact]
         public void ShouldBeAbleToSetHashbrowns()
         {
+            var entree = new SmokehouseSkeleton();
+            entree.HashBrowns = false;
+            Assert.False(entree.HashBrowns);
+            entree.HashBrowns = true;
+            Assert.True(entree.HashBrowns);
         }
 
         [Fact]
         public void ShouldBeAbleToSetPancake()
         {
+            var entree = new SmokehouseSkeleton();
+            entree.Pancake = false;
+            Assert.False(entree.Pancake);
+            entree.Pancake = true;
+            Assert.True(entree.Pancake);
         }
 
         [Fact]
         public void ShouldReturnCorrectPrice()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.Equal(5.62, entree.Price);
         }
 
         [Fact]
         public void ShouldReturnCorrectCalories()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.Equal((uint)602, entree.Calories);
         }
 
         [Theory]
@@ -67,11 +100,22 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldReturnCorrectSpecialInstructions(bool includeSausage, bool includeEgg,
                                                             bool includeHashbrowns, bool includePancake)
         {
+            var entree = new SmokehouseSkeleton();
+            entree.SausageLink = includeSausage;
+            entree.Egg = includeEgg;
+            entree.HashBrowns = includeHashbrowns;
+            entree.Pancake = includePancake;
+            if (!includeSausage) Assert.Contains("Hold sausage", entree.SpecialInstructions);
+            if (!includeEgg) Assert.Contains("Hold eggs", entree.SpecialInstructions);
+            if (!includeHashbrowns) Assert.Contains("Hold hash browns", entree.SpecialInstructions);
+            if (!includePancake) Assert.Contains("Hold pancakes", entree.SpecialInstructions);
         }
 
         [Fact]
         public void ShouldReturnCorrectToString()
         {
+            var entree = new SmokehouseSkeleton();
+            Assert.Equal("Smokehouse Skeleton", entree.ToString());
         }
     }
 }
