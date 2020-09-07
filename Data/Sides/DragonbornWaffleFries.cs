@@ -10,13 +10,23 @@ using BleakwindBuffet.Data.Enums;
 namespace BleakwindBuffet.Data.Sides
 {
     /// <summary>
-    /// Represents Dragonborn Waffle Fries
+    /// Represents Dragonborn Waffle Fries.
     /// </summary>
+    /// <remarks>
+    /// The initial size of the side is small.
+    /// </remarks>
     public class DragonbornWaffleFries
     {
         private Size size = Size.Small;
 
+        /// <summary>
+        /// The size of the side.
+        /// </summary>
         public Size Size { get => size; set => size = value; }
+
+        /// <summary>
+        /// The price of the side.
+        /// </summary>
         public double Price
         {
             get
@@ -30,6 +40,10 @@ namespace BleakwindBuffet.Data.Sides
                 }
             }
         }
+
+        /// <summary>
+        /// The amount of calories in the side.
+        /// </summary>
         public uint Calories
         {
             get
@@ -43,12 +57,23 @@ namespace BleakwindBuffet.Data.Sides
                 }
             }
         }
+
+        /// <summary>
+        /// Special instructions attached to the side.
+        /// </summary>
         public List<string> SpecialInstructions { get => new List<string>(); }
 
+        /// <summary>
+        /// Constructs a new Dragonborn Waffle Fries.
+        /// </summary>
         public DragonbornWaffleFries()
         {
         }
 
+        /// <summary>
+        /// Returns a string representing the side.
+        /// </summary>
+        /// <returns>The string representing the side.</returns>
         public override string ToString()
         {
             return $"{size} Dragonborn Waffle Fries";

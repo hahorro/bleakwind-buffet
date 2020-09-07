@@ -10,15 +10,30 @@ using BleakwindBuffet.Data.Enums;
 namespace BleakwindBuffet.Data.Drinks
 {
     /// <summary>
-    /// Represents a Aretino Apple Juice
+    /// Represents an Aretino Apple Juice.
     /// </summary>
+    /// <remarks>
+    /// The initial size of the drink is small and
+    /// comes with or without ice.
+    /// </remarks>
     public class AretinoAppleJuice
     {
         private bool ice = false;
         private Size size = Size.Small;
 
+        /// <summary>
+        /// Whether the drink has ice or not.
+        /// </summary>
         public bool Ice { get => ice; set => ice = value; }
+
+        /// <summary>
+        /// The size of the drink.
+        /// </summary>
         public Size Size { get => size; set => size = value; }
+
+        /// <summary>
+        /// The price of the drink.
+        /// </summary>
         public double Price
         {
             get
@@ -32,6 +47,10 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+
+        /// <summary>
+        /// The amount of calories in the drink.
+        /// </summary>
         public uint Calories
         {
             get
@@ -45,6 +64,10 @@ namespace BleakwindBuffet.Data.Drinks
                 }
             }
         }
+
+        /// <summary>
+        /// Special instructions attached to the drink.
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -56,10 +79,17 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Constructs a new Aretino Apple Juice.
+        /// </summary>
         public AretinoAppleJuice()
         {
         }
 
+        /// <summary>
+        /// Returns a string representing the drink.
+        /// </summary>
+        /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
             return $"{size} Aretino Apple Juice";
