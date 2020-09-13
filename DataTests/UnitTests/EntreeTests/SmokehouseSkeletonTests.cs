@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: SmokehouseSkeletonTests.cs
  * Purpose: Test the SmokehouseSkeleton.cs class in the Data library
  */
@@ -11,7 +12,14 @@ using BleakwindBuffet.Data.Entrees;
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class SmokehouseSkeletonTests
-    {        
+    {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var entree = new SmokehouseSkeleton();
+            Assert.IsAssignableFrom<IOrderItem>(entree);
+        }
+
         [Fact]
         public void ShouldInlcudeSausageByDefault()
         {

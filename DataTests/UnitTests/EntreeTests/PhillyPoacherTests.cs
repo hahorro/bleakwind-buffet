@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: PhillyPoacherTests.cs
  * Purpose: Test the PhillyPoacher.cs class in the Data library
  */
@@ -12,6 +13,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class PhillyPoacherTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var entree = new PhillyPoacher();
+            Assert.IsAssignableFrom<IOrderItem>(entree);
+        }
+
         [Fact]
         public void ShouldInlcudeSirloinByDefault()
         {

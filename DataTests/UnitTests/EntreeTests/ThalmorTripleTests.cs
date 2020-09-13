@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: ThalmorTripleTests.cs
  * Purpose: Test the ThalmorTriple.cs class in the Data library
  */
@@ -12,6 +13,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class ThalmorTripleTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var entree = new ThalmorTriple();
+            Assert.IsAssignableFrom<IOrderItem>(entree);
+        }
+
         [Fact]
         public void ShouldIncludeBunByDefault()
         {

@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: VokunSaladTests.cs
  * Purpose: Test the VokunSalad.cs class in the Data library
  */
@@ -13,6 +14,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
     public class VokunSaladTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var side = new VokunSalad();
+            Assert.IsAssignableFrom<IOrderItem>(side);
+        }
+
         [Fact]
         public void ShouldBeSmallByDefault()
         {

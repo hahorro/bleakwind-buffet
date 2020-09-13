@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: MadOtarGritsTests.cs
  * Purpose: Test the MadOtarGrits.cs class in the Data library
  */
@@ -13,6 +14,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
     public class MadOtarGritsTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var side = new MadOtarGrits();
+            Assert.IsAssignableFrom<IOrderItem>(side);
+        }
+
         [Fact]
         public void ShouldBeSmallByDefault()
         {

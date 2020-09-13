@@ -13,38 +13,25 @@ namespace BleakwindBuffet.Data.Drinks
     /// Represents a Sailor Soda.
     /// </summary>
     /// <remarks>
-    /// The initial size of the drink is small and
-    /// comes in several flavors with or without ice.
+    /// Comes in several flavors with or without ice.
     /// </remarks>
-    public class SailorSoda
+    public class SailorSoda : Drink, IOrderItem
     {
-        private bool ice = true;
-        private Size size = Size.Small;
-        private SodaFlavor flavor = SodaFlavor.Cherry;
-
         /// <summary>
         /// Whether the drink has ice or not.
         /// </summary>
-        public bool Ice { get => ice; set => ice = value; }
-
-        /// <summary>
-        /// The size of the drink.
-        /// </summary>
-        public Size Size { get => size; set => size = value; }
+        public bool Ice { get; set; } = true;
 
         /// <summary>
         /// The flavor of the drink.
         /// </summary>
-        public SodaFlavor Flavor { get => flavor; set => flavor = value; }
+        public SodaFlavor Flavor { get; set; } = SodaFlavor.Cherry;
 
-        /// <summary>
-        /// The price of the drink.
-        /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 1.42;
                     case Size.Medium: return 1.74;
@@ -54,14 +41,11 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-        /// <summary>
-        /// The amount of calories in the drink.
-        /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 117;
                     case Size.Medium: return 153;
@@ -71,15 +55,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-        /// <summary>
-        /// Special instructions attached to the drink.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!ice) list.Add("Hold ice");
+                if (!Ice) list.Add("Hold ice");
 
                 return list;
             }
@@ -98,7 +79,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{size} {flavor} Sailor Soda";
+            return $"{Size} {Flavor} Sailor Soda";
         }
     }
 }

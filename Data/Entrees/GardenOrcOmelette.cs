@@ -14,55 +14,41 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with broccoli, mushrooms, tomatoes, and cheddar.
     /// </remarks>
-    public class GardenOrcOmelette
+    public class GardenOrcOmelette : Entree, IOrderItem
     {
-        private bool broccoli = true;
-        private bool mushrooms = true;
-        private bool tomato = true;
-        private bool cheddar = true;
-
         /// <summary>
         /// Whether the entree has broccoli or not.
         /// </summary>
-        public bool Broccoli { get => broccoli; set => broccoli = value; }
+        public bool Broccoli { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has mushrooms or not.
         /// </summary>
-        public bool Mushrooms { get => mushrooms; set => mushrooms = value; }
+        public bool Mushrooms { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has tomatoes or not.
         /// </summary>
-        public bool Tomato { get => tomato; set => tomato = value; }
+        public bool Tomato { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has cheddar or not.
         /// </summary>
-        public bool Cheddar { get => cheddar; set => cheddar = value; }
+        public bool Cheddar { get; set; } = true;
 
-        /// <summary>
-        /// The price of the entree.
-        /// </summary>
-        public double Price { get; }
+        public override double Price { get; }
 
-        /// <summary>
-        /// The amount of calories in the entree.
-        /// </summary>
-        public uint Calories { get; }
+        public override uint Calories { get; }
 
-        /// <summary>
-        /// Special instructions attached to the entree.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!broccoli) list.Add("Hold broccoli");
-                if (!mushrooms) list.Add("Hold mushrooms");
-                if (!tomato) list.Add("Hold tomato");
-                if (!cheddar) list.Add("Hold cheddar");
+                if (!Broccoli) list.Add("Hold broccoli");
+                if (!Mushrooms) list.Add("Hold mushrooms");
+                if (!Tomato) list.Add("Hold tomato");
+                if (!Cheddar) list.Add("Hold cheddar");
 
                 return list;
             }

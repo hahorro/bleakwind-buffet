@@ -5,57 +5,37 @@
  */
 
 using System.Collections.Generic;
-using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Drinks
 {
     /// <summary>
     /// Represents a Warrior Water.
     /// </summary>
-    /// The initial size of the drink is small and
-    /// comes with or without ice and a lemon slice.
+    /// Comes with or without ice and a lemon slice.
     /// </remarks>
-    public class WarriorWater
+    public class WarriorWater : Drink, IOrderItem
     {
-        private bool ice = true;
-        private bool lemon = false;
-        private Size size = Size.Small;
-
         /// <summary>
         /// Whether the drink has ice or not.
         /// </summary>
-        public bool Ice { get => ice; set => ice = value; }
+        public bool Ice { get; set; } = true;
 
         /// <summary>
         /// Whether the drink has a lemon slice or not.
         /// </summary>
-        public bool Lemon { get => lemon; set => lemon = value; }
+        public bool Lemon { get; set; } = false;
 
-        /// <summary>
-        /// The size of the drink.
-        /// </summary>
-        public Size Size { get => size; set => size = value; }
+        public override double Price { get; }
 
-        /// <summary>
-        /// The price of the drink.
-        /// </summary>
-        public double Price { get; }
+        public override uint Calories { get; }
 
-        /// <summary>
-        /// The amount of calories in the drink.
-        /// </summary>
-        public uint Calories { get; }
-
-        /// <summary>
-        /// Special instructions attached to the drink.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!ice) list.Add("Hold ice");
-                if (lemon) list.Add("Add lemon");
+                if (!Ice) list.Add("Hold ice");
+                if (Lemon) list.Add("Add lemon");
 
                 return list;
             }
@@ -66,6 +46,8 @@ namespace BleakwindBuffet.Data.Drinks
         /// </summary>
         public WarriorWater()
         {
+            Price = 0;
+            Calories = 0;
         }
 
         /// <summary>
@@ -74,7 +56,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{size} Warrior Water";
+            return $"{Size} Warrior Water";
         }
     }
 }

@@ -14,48 +14,35 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with sirloin, onions, and roll.
     /// </remarks>
-    public class PhillyPoacher
+    public class PhillyPoacher : Entree, IOrderItem
     {
-        private bool sirloin = true;
-        private bool onion = true;
-        private bool roll = true;
-
         /// <summary>
         /// Whether the entree has sirloin or not.
         /// </summary>
-        public bool Sirloin { get => sirloin; set => sirloin = value; }
+        public bool Sirloin { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has onions or not.
         /// </summary>
-        public bool Onion { get => onion; set => onion = value; }
+        public bool Onion { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has a roll or not.
         /// </summary>
-        public bool Roll { get => roll; set => roll = value; }
+        public bool Roll { get; set; } = true;
 
-        /// <summary>
-        /// The price of the entree.
-        /// </summary>
-        public double Price { get; }
+        public override double Price { get; }
 
-        /// <summary>
-        /// The amount of calories in the entree.
-        /// </summary>
-        public uint Calories { get; }
+        public override uint Calories { get; }
 
-        /// <summary>
-        /// Special instructions attached to the entree.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!sirloin) list.Add("Hold sirloin");
-                if (!onion) list.Add("Hold onions");
-                if (!roll) list.Add("Hold roll");
+                if (!Sirloin) list.Add("Hold sirloin");
+                if (!Onion) list.Add("Hold onions");
+                if (!Roll) list.Add("Hold roll");
 
                 return list;
             }

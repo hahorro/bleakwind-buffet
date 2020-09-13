@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: DoubleDraugrTests.cs
  * Purpose: Test the DoubleDraugr.cs class in the Data library
  */
@@ -12,6 +13,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class DoubleDraugrTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var entree = new DoubleDraugr();
+            Assert.IsAssignableFrom<IOrderItem>(entree);
+        }
+
         [Fact]
         public void ShouldIncludeBunByDefault()
         {

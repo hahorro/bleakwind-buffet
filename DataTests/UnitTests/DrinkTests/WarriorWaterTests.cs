@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: SailorSodaTests.cs
  * Purpose: Test the WarriorWater.cs class in the Data library
  */
@@ -15,6 +16,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
     public class WarriorWaterTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var drink = new WarriorWater();
+            Assert.IsAssignableFrom<IOrderItem>(drink);
+        }
+
         [Fact]
         public void ShouldIncludeIceByDefault()
         {

@@ -12,26 +12,13 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Represents a Vokun Salad.
     /// </summary>
-    /// <remarks>
-    /// The initial size of the side is small.
-    /// </remarks>
-    public class VokunSalad
+    public class VokunSalad : Side, IOrderItem
     {
-        private Size size = Size.Small;
-
-        /// <summary>
-        /// The size of the side.
-        /// </summary>
-        public Size Size { get => size; set => size = value; }
-
-        /// <summary>
-        /// The price of the side.
-        /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 0.93;
                     case Size.Medium: return 1.28;
@@ -41,14 +28,11 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
-        /// <summary>
-        /// The amount of calories in the side.
-        /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 41;
                     case Size.Medium: return 52;
@@ -58,10 +42,7 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
-        /// <summary>
-        /// Special instructions attached to the side.
-        /// </summary>
-        public List<string> SpecialInstructions { get => new List<string>(); }
+        public override List<string> SpecialInstructions { get => new List<string>(); }
 
         /// <summary>
         /// Constructs a new Vokun Salad.
@@ -76,7 +57,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <returns>The string representing the side.</returns>
         public override string ToString()
         {
-            return $"{size} Vokun Salad";
+            return $"{Size} Vokun Salad";
         }
     }
 }

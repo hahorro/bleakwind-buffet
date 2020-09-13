@@ -13,45 +13,31 @@ namespace BleakwindBuffet.Data.Drinks
     /// Represents a Candlehearth Coffee.
     /// </summary>
     /// <remarks>
-    /// The initial size of the drink is small,
-    /// comes with or without ice, caffeinated/decaf,
+    /// Comes with or without ice, caffeinated/decaf,
     /// and allows for cream to be added.
     /// </remarks>
-    public class CandlehearthCoffee
+    public class CandlehearthCoffee : Drink, IOrderItem
     {
-        private bool ice = false;
-        private bool decaf = false;
-        private bool roomForCream = false;
-        private Size size = Size.Small;
-
         /// <summary>
         /// Whether the drink has ice or not.
         /// </summary>
-        public bool Ice { get => ice; set => ice = value; }
+        public bool Ice { get; set; } = false;
 
         /// <summary>
         /// Whether the drink is caffeinated or not.
         /// </summary>
-        public bool Decaf { get => decaf; set => decaf = value; }
+        public bool Decaf { get; set; } = false;
 
         /// <summary>
         /// Whether the drink has room for cream or not.
         /// </summary>
-        public bool RoomForCream { get => roomForCream; set => roomForCream = value; }
+        public bool RoomForCream { get; set; } = false;
 
-        /// <summary>
-        /// The size of the drink.
-        /// </summary>
-        public Size Size { get => size; set => size = value; }
-
-        /// <summary>
-        /// The price of the drink.
-        /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 0.75;
                     case Size.Medium: return 1.25;
@@ -61,14 +47,11 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-        /// <summary>
-        /// The amount of calories in the drink.
-        /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
-                switch (size)
+                switch (Size)
                 {
                     case Size.Small: return 7;
                     case Size.Medium: return 10;
@@ -78,16 +61,13 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
-        /// <summary>
-        /// Special instructions attached to the drink.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (ice) list.Add("Add ice");
-                if (roomForCream) list.Add("Add cream");
+                if (Ice) list.Add("Add ice");
+                if (RoomForCream) list.Add("Add cream");
 
                 return list;
             }
@@ -106,7 +86,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{size} {(decaf ? "Decaf " : "")}Candlehearth Coffee";
+            return $"{Size} {(Decaf ? "Decaf " : "")}Candlehearth Coffee";
         }
     }
 }

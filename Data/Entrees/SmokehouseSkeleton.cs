@@ -14,55 +14,41 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with sausage links, eggs, hashbrowns, and pancakes.
     /// </remarks>
-    public class SmokehouseSkeleton
+    public class SmokehouseSkeleton : Entree, IOrderItem
     {
-        private bool sausageLink = true;
-        private bool egg = true;
-        private bool hashBrowns = true;
-        private bool pancake = true;
-
         /// <summary>
         /// Whether the entree has sausage links or not.
         /// </summary>
-        public bool SausageLink { get => sausageLink; set => sausageLink = value; }
+        public bool SausageLink { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has eggs or not.
         /// </summary>
-        public bool Egg { get => egg; set => egg = value; }
+        public bool Egg { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has hash browns or not.
         /// </summary>
-        public bool HashBrowns { get => hashBrowns; set => hashBrowns = value; }
+        public bool HashBrowns { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has pancakes or not.
         /// </summary>
-        public bool Pancake { get => pancake; set => pancake = value; }
+        public bool Pancake { get; set; } = true;
 
-        /// <summary>
-        /// The price of the entree.
-        /// </summary>
-        public double Price { get; }
+        public override double Price { get; }
 
-        /// <summary>
-        /// The amount of calories in the entree.
-        /// </summary>
-        public uint Calories { get; }
+        public override uint Calories { get; }
 
-        /// <summary>
-        /// Special instructions attached to the entree.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!sausageLink) list.Add("Hold sausage");
-                if (!egg) list.Add("Hold eggs");
-                if (!hashBrowns) list.Add("Hold hash browns");
-                if (!pancake) list.Add("Hold pancakes");
+                if (!SausageLink) list.Add("Hold sausage");
+                if (!Egg) list.Add("Hold eggs");
+                if (!HashBrowns) list.Add("Hold hash browns");
+                if (!Pancake) list.Add("Hold pancakes");
 
                 return list;
             }

@@ -1,5 +1,6 @@
 ﻿/*
  * Author: Zachery Brunner
+ * Edited by: Hans Ahorro
  * Class: ThugsTBoneTests.cs
  * Purpose: Test the ThugsTBone.cs class in the Data library
  */
@@ -12,6 +13,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
     public class ThugsTBoneTests
     {
+        [Fact]
+        public void ShouldBeAssignableToInterfaceOrderItem()
+        {
+            var entree = new ThugsTBone();
+            Assert.IsAssignableFrom<IOrderItem>(entree);
+        }
+
         [Fact]
         public void ShouldReturnCorrectPrice()
         {

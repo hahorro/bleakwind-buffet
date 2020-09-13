@@ -15,83 +15,65 @@ namespace BleakwindBuffet.Data.Entrees
     /// Comes with buns, ketchup, mustard, pickles,
     /// cheese, tomatoes, lettuce, and mayo.
     /// </remarks>
-    public class DoubleDraugr
+    public class DoubleDraugr : Entree, IOrderItem
     {
-        private bool bun = true;
-        private bool ketchup = true;
-        private bool mustard = true;
-        private bool pickle = true;
-        private bool cheese = true;
-        private bool tomato = true;
-        private bool lettuce = true;
-        private bool mayo = true;
-
         /// <summary>
         /// Whether the entree has buns or not.
         /// </summary>
-        public bool Bun { get => bun; set => bun = value; }
+        public bool Bun { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has ketchup or not.
         /// </summary>
-        public bool Ketchup { get => ketchup; set => ketchup = value; }
+        public bool Ketchup { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has mustard or not.
         /// </summary>
-        public bool Mustard { get => mustard; set => mustard = value; }
+        public bool Mustard { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has pickles or not.
         /// </summary>
-        public bool Pickle { get => pickle; set => pickle = value; }
+        public bool Pickle { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has cheese or not.
         /// </summary>
-        public bool Cheese { get => cheese; set => cheese = value; }
+        public bool Cheese { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has tomatoes or not.
         /// </summary>
-        public bool Tomato { get => tomato; set => tomato = value; }
+        public bool Tomato { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has lettuce or not.
         /// </summary>
-        public bool Lettuce { get => lettuce; set => lettuce = value; }
+        public bool Lettuce { get; set; } = true;
 
         /// <summary>
         /// Whether the entree has mayo or not.
         /// </summary>
-        public bool Mayo { get => mayo; set => mayo = value; }
+        public bool Mayo { get; set; } = true;
 
-        /// <summary>
-        /// The price of the entree.
-        /// </summary>
-        public double Price { get; }
+        public override double Price { get; }
 
-        /// <summary>
-        /// The amount of calories in the entree.
-        /// </summary>
-        public uint Calories { get; }
+        public override uint Calories { get; }
 
-        /// <summary>
-        /// Special instructions attached to the entree.
-        /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
                 var list = new List<string>();
-                if (!bun) list.Add("Hold bun");
-                if (!ketchup) list.Add("Hold ketchup");
-                if (!mustard) list.Add("Hold mustard");
-                if (!pickle) list.Add("Hold pickle");
-                if (!cheese) list.Add("Hold cheese");
-                if (!tomato) list.Add("Hold tomato");
-                if (!lettuce) list.Add("Hold lettuce");
-                if (!mayo) list.Add("Hold mayo");
+                if (!Bun) list.Add("Hold bun");
+                if (!Ketchup) list.Add("Hold ketchup");
+                if (!Mustard) list.Add("Hold mustard");
+                if (!Pickle) list.Add("Hold pickle");
+                if (!Cheese) list.Add("Hold cheese");
+                if (!Tomato) list.Add("Hold tomato");
+                if (!Lettuce) list.Add("Hold lettuce");
+                if (!Mayo) list.Add("Hold mayo");
 
                 return list;
             }
