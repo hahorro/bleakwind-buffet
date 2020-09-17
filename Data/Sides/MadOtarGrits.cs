@@ -14,6 +14,12 @@ namespace BleakwindBuffet.Data.Sides
     /// </summary>
     public class MadOtarGrits : Side, IOrderItem
     {
+        /// <summary>
+        /// The price of the side.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price
         {
             get
@@ -28,6 +34,9 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <value>
+        /// The calories of the side.
+        /// </value>
         public override uint Calories
         {
             get
@@ -42,6 +51,12 @@ namespace BleakwindBuffet.Data.Sides
             }
         }
 
+        /// <summary>
+        /// Special instructions to prepare the side.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions { get => new List<string>(); }
 
         /// <summary>

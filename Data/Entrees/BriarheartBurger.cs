@@ -16,35 +16,50 @@ namespace BleakwindBuffet.Data.Entrees
     /// </remarks>
     public class BriarheartBurger : Entree, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the entree has buns or not.
-        /// </summary>
+        /// </value>
         public bool Bun { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has ketchup or not.
-        /// </summary>
+        /// </value>
         public bool Ketchup { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has mustard or not.
-        /// </summary>
+        /// </value>
         public bool Mustard { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has pickles or not.
-        /// </summary>
+        /// </value>
         public bool Pickle { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has cheese or not.
-        /// </summary>
+        /// </value>
         public bool Cheese { get; set; } = true;
 
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

@@ -15,29 +15,32 @@ namespace BleakwindBuffet.Data.Sides
     /// <remarks>
     /// The initial size of the side is small.
     /// </remarks>
-    public abstract class Side
+    public abstract class Side : IOrderItem
     {
-        /// <summary>
-        /// The size of the drink.
-        /// </summary>
+        /// <value>
+        /// The size of the side.
+        /// </value>
         public virtual Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// The price of the side.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// In US dollars.
-        /// </remarks>
+        /// </value>
         public abstract double Price { get; }
 
-        /// <summary>
+        /// <value>
         /// The calories of the side.
-        /// </summary>
+        /// </value>
         public abstract uint Calories { get; }
 
         /// <summary>
         /// Special instructions to prepare the side.
         /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public abstract List<string> SpecialInstructions { get; }
     }
 }

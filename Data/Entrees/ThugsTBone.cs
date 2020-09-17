@@ -13,10 +13,25 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class ThugsTBone : Entree, IOrderItem
     {
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions { get => new List<string>(); }
 
         /// <summary>

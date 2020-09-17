@@ -17,27 +17,30 @@ namespace BleakwindBuffet.Data.Drinks
     /// </remarks>
     public abstract class Drink
     {
-        /// <summary>
+        /// <value>
         /// The size of the drink.
-        /// </summary>
+        /// </value>
         public virtual Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// The price of the drink.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// In US dollars.
-        /// </remarks>
+        /// </value>
         public abstract double Price { get; }
 
-        /// <summary>
+        /// <value>
         /// The calories of the drink.
-        /// </summary>
+        /// </value>
         public abstract uint Calories { get; }
 
         /// <summary>
         /// Special instructions to prepare the drink.
         /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public abstract List<string> SpecialInstructions { get; }
     }
 }

@@ -17,16 +17,22 @@ namespace BleakwindBuffet.Data.Drinks
     /// </remarks>
     public class SailorSoda : Drink, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the drink has ice or not.
-        /// </summary>
+        /// </value>
         public bool Ice { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// The flavor of the drink.
-        /// </summary>
+        /// </value>
         public SodaFlavor Flavor { get; set; } = SodaFlavor.Cherry;
 
+        /// <summary>
+        /// The price of the drink.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price
         {
             get
@@ -41,6 +47,9 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <value>
+        /// The calories of the drink.
+        /// </value>
         public override uint Calories
         {
             get
@@ -55,6 +64,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Special instructions to prepare the drink.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

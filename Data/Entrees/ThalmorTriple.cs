@@ -17,60 +17,75 @@ namespace BleakwindBuffet.Data.Entrees
     /// </remarks>
     public class ThalmorTriple : Entree, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the entree has buns or not.
-        /// </summary>
+        /// </value>
         public bool Bun { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has ketchup or not.
-        /// </summary>
+        /// </value>
         public bool Ketchup { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has mustard or not.
-        /// </summary>
+        /// </value>
         public bool Mustard { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has pickles or not.
-        /// </summary>
+        /// </value>
         public bool Pickle { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has cheese or not.
-        /// </summary>
+        /// </value>
         public bool Cheese { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has tomatoes or not.
-        /// </summary>
+        /// </value>
         public bool Tomato { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has lettuce or not.
-        /// </summary>
+        /// </value>
         public bool Lettuce { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has mayo or not.
-        /// </summary>
+        /// </value>
         public bool Mayo { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has bacon or not.
-        /// </summary>
+        /// </value>
         public bool Bacon { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has eggs or not.
-        /// </summary>
+        /// </value>
         public bool Egg { get; set; } = true;
 
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

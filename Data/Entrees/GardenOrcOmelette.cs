@@ -16,30 +16,45 @@ namespace BleakwindBuffet.Data.Entrees
     /// </remarks>
     public class GardenOrcOmelette : Entree, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the entree has broccoli or not.
-        /// </summary>
+        /// </value>
         public bool Broccoli { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has mushrooms or not.
-        /// </summary>
+        /// </value>
         public bool Mushrooms { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has tomatoes or not.
-        /// </summary>
+        /// </value>
         public bool Tomato { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has cheddar or not.
-        /// </summary>
+        /// </value>
         public bool Cheddar { get; set; } = true;
 
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

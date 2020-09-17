@@ -16,30 +16,45 @@ namespace BleakwindBuffet.Data.Entrees
     /// </remarks>
     public class SmokehouseSkeleton : Entree, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the entree has sausage links or not.
-        /// </summary>
+        /// </value>
         public bool SausageLink { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has eggs or not.
-        /// </summary>
+        /// </value>
         public bool Egg { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has hash browns or not.
-        /// </summary>
+        /// </value>
         public bool HashBrowns { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has pancakes or not.
-        /// </summary>
+        /// </value>
         public bool Pancake { get; set; } = true;
 
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

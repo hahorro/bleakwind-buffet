@@ -22,6 +22,12 @@ namespace BleakwindBuffet.Data.Drinks
         /// </summary>
         public bool Ice { get; set; } = false;
 
+        /// <summary>
+        /// The price of the drink.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price
         {
             get
@@ -36,6 +42,9 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <value>
+        /// The calories of the drink.
+        /// </value>
         public override uint Calories
         {
             get
@@ -50,6 +59,12 @@ namespace BleakwindBuffet.Data.Drinks
             }
         }
 
+        /// <summary>
+        /// Special instructions to prepare the drink.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

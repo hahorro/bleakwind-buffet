@@ -13,19 +13,22 @@ namespace BleakwindBuffet.Data
     /// </summary>
     public interface IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// The price of the item.
-        /// </summary>
+        /// </value>
         double Price { get; }
 
-        /// <summary>
+        /// <value>
         /// The calories of the item.
-        /// </summary>
+        /// </value>
         uint Calories { get; }
 
         /// <summary>
         /// Special instructions to prepare the item.
         /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         List<string> SpecialInstructions { get; }
     }
 }

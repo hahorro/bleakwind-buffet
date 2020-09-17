@@ -16,25 +16,40 @@ namespace BleakwindBuffet.Data.Entrees
     /// </remarks>
     public class PhillyPoacher : Entree, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the entree has sirloin or not.
-        /// </summary>
+        /// </value>
         public bool Sirloin { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has onions or not.
-        /// </summary>
+        /// </value>
         public bool Onion { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the entree has a roll or not.
-        /// </summary>
+        /// </value>
         public bool Roll { get; set; } = true;
 
+        /// <summary>
+        /// The price of the entree.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the entree.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the entree.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get

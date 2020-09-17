@@ -15,20 +15,35 @@ namespace BleakwindBuffet.Data.Drinks
     /// </remarks>
     public class WarriorWater : Drink, IOrderItem
     {
-        /// <summary>
+        /// <value>
         /// Whether the drink has ice or not.
-        /// </summary>
+        /// </value>
         public bool Ice { get; set; } = true;
 
-        /// <summary>
+        /// <value>
         /// Whether the drink has a lemon slice or not.
-        /// </summary>
+        /// </value>
         public bool Lemon { get; set; } = false;
 
+        /// <summary>
+        /// The price of the drink.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
         public override double Price { get; }
 
+        /// <value>
+        /// The calories of the drink.
+        /// </value>
         public override uint Calories { get; }
 
+        /// <summary>
+        /// Special instructions to prepare the drink.
+        /// </summary>
+        /// <value>
+        /// List of special instructions.
+        /// </value>
         public override List<string> SpecialInstructions
         {
             get
