@@ -44,16 +44,26 @@ namespace PointOfSale
         {
             InitializeComponent();
             ResetTicket();
-            // this.ExitCustomizationHandler.
+            menuSelection.OpenCustomizationWindow += DisableTicket;
+            menuSelection.ExitCustomizationWindow += EnableTicket;
         }
 
         /// <summary>
-        /// Enables/disables the ticket interface.
+        /// Disables the ticket interface.
         /// </summary>
-        /// <param name="b">Whether to enable/disable the interface.</param>
-        public void EnableTicket(bool b)
+        /// <param name="sender">The object.</param>
+        /// <param name="e">The arguments provided.</param>
+        public void DisableTicket(object sender, RoutedEventArgs e)
         {
-            orderTicket.IsEnabled = b;
+            orderTicket.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// Enables the ticket interface.
+        /// </summary>
+        public void EnableTicket(object sender, RoutedEventArgs e)
+        {
+            orderTicket.IsEnabled = true;
         }
 
         /// <summary>

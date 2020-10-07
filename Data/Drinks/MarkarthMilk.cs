@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -15,12 +16,41 @@ namespace BleakwindBuffet.Data.Drinks
     /// <remarks>
     /// Comes with or without ice.
     /// </remarks>
-    public class MarkarthMilk : Drink, IOrderItem
+    public class MarkarthMilk : Drink, IOrderItem, INotifyPropertyChanged
     {
+        private bool ice = false;
+        private Size size = Size.Small;
+
         /// <summary>
-        /// Whether the drink has ice or not.
+        /// An event fired when a property of this object changes.
         /// </summary>
-        public bool Ice { get; set; } = false;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <value>
+        /// Whether the drink has ice or not.
+        /// </value>
+        public bool Ice
+        {
+            get => ice;
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+            }
+        }
+
+        /// <value>
+        /// The size of the drink.
+        /// </value>
+        public override Size Size
+        {
+            get => size;
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
 
         /// <summary>
         /// The price of the drink.
@@ -32,7 +62,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 1.05;
                     case Size.Medium: return 1.11;
@@ -49,7 +79,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 56;
                     case Size.Medium: return 72;
@@ -70,7 +100,7 @@ namespace BleakwindBuffet.Data.Drinks
             get
             {
                 var list = new List<string>();
-                if (Ice) list.Add("Add ice");
+                if (ice) list.Add("Add ice");
 
                 return list;
             }
@@ -89,7 +119,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{Size} Markarth Milk";
+            return $"{size} Markarth Milk";
         }
     }
 }

@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -16,22 +17,69 @@ namespace BleakwindBuffet.Data.Drinks
     /// Comes with or without ice, caffeinated/decaf,
     /// and allows for cream to be added.
     /// </remarks>
-    public class CandlehearthCoffee : Drink, IOrderItem
+    public class CandlehearthCoffee : Drink, IOrderItem, INotifyPropertyChanged
     {
+        private bool ice = false;
+        private bool decaf = false;
+        private bool roomForCream = false;
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the drink has ice or not.
         /// </value>
-        public bool Ice { get; set; } = false;
+        public bool Ice
+        {
+            get => ice;
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+            }
+        }
 
         /// <value>
         /// Whether the drink is caffeinated or not.
         /// </value>
-        public bool Decaf { get; set; } = false;
+        public bool Decaf
+        {
+            get => decaf;
+            set
+            {
+                decaf = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Decaf"));
+            }
+        }
 
         /// <value>
         /// Whether the drink has room for cream or not.
         /// </value>
-        public bool RoomForCream { get; set; } = false;
+        public bool RoomForCream
+        {
+            get => roomForCream;
+            set
+            {
+                roomForCream = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RoomForCream"));
+            }
+        }
+
+        /// <value>
+        /// The size of the drink.
+        /// </value>
+        public override Size Size
+        {
+            get => size;
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
 
         /// <summary>
         /// The price of the drink.
@@ -43,7 +91,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 0.75;
                     case Size.Medium: return 1.25;
@@ -60,7 +108,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 7;
                     case Size.Medium: return 10;
@@ -81,8 +129,8 @@ namespace BleakwindBuffet.Data.Drinks
             get
             {
                 var list = new List<string>();
-                if (Ice) list.Add("Add ice");
-                if (RoomForCream) list.Add("Add cream");
+                if (ice) list.Add("Add ice");
+                if (roomForCream) list.Add("Add cream");
 
                 return list;
             }
@@ -101,7 +149,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{Size} {(Decaf ? "Decaf " : "")}Candlehearth Coffee";
+            return $"{size}{(decaf ? " Decaf" : "")} Candlehearth Coffee";
         }
     }
 }

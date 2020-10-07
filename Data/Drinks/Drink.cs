@@ -15,12 +15,12 @@ namespace BleakwindBuffet.Data.Drinks
     /// <remarks>
     /// The initial size of the drink is small.
     /// </remarks>
-    public abstract class Drink
+    public abstract class Drink : IOrderItem
     {
         /// <value>
         /// The size of the drink.
         /// </value>
-        public virtual Size Size { get; set; } = Size.Small;
+        public abstract Size Size { get; set; }
 
         /// <summary>
         /// The price of the drink.

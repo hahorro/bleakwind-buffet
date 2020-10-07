@@ -6,5 +6,8 @@
         xmlns:local="clr-namespace:PointOfSale"
         mc:Ignorable="d"
         Title="Bleakwind Buffet Point of Sale" Height="600" Width="1000" MinHeight="480" MinWidth="236">
+    <!--
+        Main window will not contain any logic related to the order interface
+    -->
     <local:OrderComponent Margin="10,20,10,10"/>
 </Window>

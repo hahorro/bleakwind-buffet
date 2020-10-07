@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data.Entrees
 {
@@ -14,22 +15,55 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with sirloin, onions, and roll.
     /// </remarks>
-    public class PhillyPoacher : Entree, IOrderItem
+    public class PhillyPoacher : Entree, IOrderItem, INotifyPropertyChanged
     {
+        private bool sirloin = true;
+        private bool onion = true;
+        private bool roll = true;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the entree has sirloin or not.
         /// </value>
-        public bool Sirloin { get; set; } = true;
+        public bool Sirloin
+        {
+            get => sirloin;
+            set
+            {
+                sirloin = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sirloin"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has onions or not.
         /// </value>
-        public bool Onion { get; set; } = true;
+        public bool Onion
+        {
+            get => onion;
+            set
+            {
+                onion = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Onion"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has a roll or not.
         /// </value>
-        public bool Roll { get; set; } = true;
+        public bool Roll
+        {
+            get => roll;
+            set
+            {
+                roll = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Roll"));
+            }
+        }
 
         /// <summary>
         /// The price of the entree.
@@ -55,9 +89,9 @@ namespace BleakwindBuffet.Data.Entrees
             get
             {
                 var list = new List<string>();
-                if (!Sirloin) list.Add("Hold sirloin");
-                if (!Onion) list.Add("Hold onions");
-                if (!Roll) list.Add("Hold roll");
+                if (!sirloin) list.Add("Hold sirloin");
+                if (!onion) list.Add("Hold onions");
+                if (!roll) list.Add("Hold roll");
 
                 return list;
             }

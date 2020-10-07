@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Sides
@@ -12,8 +13,28 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Represents a Fried Miraak.
     /// </summary>
-    public class FriedMiraak : Side, IOrderItem
+    public class FriedMiraak : Side, IOrderItem, INotifyPropertyChanged
     {
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <value>
+        /// The size of the side.
+        /// </value>
+        public override Size Size
+        {
+            get => size;
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
+
         /// <summary>
         /// The price of the side.
         /// </summary>
@@ -24,7 +45,7 @@ namespace BleakwindBuffet.Data.Sides
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 1.78;
                     case Size.Medium: return 2.01;
@@ -41,7 +62,7 @@ namespace BleakwindBuffet.Data.Sides
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 151;
                     case Size.Medium: return 236;
@@ -72,7 +93,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <returns>The string representing the side.</returns>
         public override string ToString()
         {
-            return $"{Size} Fried Miraak";
+            return $"{size} Fried Miraak";
         }
     }
 }

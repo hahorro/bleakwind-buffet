@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data.Entrees
 {
@@ -15,57 +16,153 @@ namespace BleakwindBuffet.Data.Entrees
     /// Comes with buns, ketchup, mustard, pickles,
     /// cheese, tomatoes, lettuce, mayo, bacon, and eggs.
     /// </remarks>
-    public class ThalmorTriple : Entree, IOrderItem
+    public class ThalmorTriple : Entree, IOrderItem, INotifyPropertyChanged
     {
+        private bool bun = true;
+        private bool ketchup = true;
+        private bool mustard = true;
+        private bool pickle = true;
+        private bool cheese = true;
+        private bool tomato = true;
+        private bool lettuce = true;
+        private bool mayo = true;
+        private bool bacon = true;
+        private bool egg = true;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the entree has buns or not.
         /// </value>
-        public bool Bun { get; set; } = true;
+        public bool Bun
+        {
+            get => bun;
+            set
+            {
+                bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has ketchup or not.
         /// </value>
-        public bool Ketchup { get; set; } = true;
+        public bool Ketchup
+        {
+            get => ketchup;
+            set
+            {
+                ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has mustard or not.
         /// </value>
-        public bool Mustard { get; set; } = true;
+        public bool Mustard
+        {
+            get => mustard;
+            set
+            {
+                mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has pickles or not.
         /// </value>
-        public bool Pickle { get; set; } = true;
+        public bool Pickle
+        {
+            get => pickle;
+            set
+            {
+                pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has cheese or not.
         /// </value>
-        public bool Cheese { get; set; } = true;
+        public bool Cheese
+        {
+            get => cheese;
+            set
+            {
+                cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has tomatoes or not.
         /// </value>
-        public bool Tomato { get; set; } = true;
+        public bool Tomato
+        {
+            get => tomato;
+            set
+            {
+                tomato = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has lettuce or not.
         /// </value>
-        public bool Lettuce { get; set; } = true;
+        public bool Lettuce
+        {
+            get => lettuce;
+            set
+            {
+                lettuce = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lettuce"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has mayo or not.
         /// </value>
-        public bool Mayo { get; set; } = true;
+        public bool Mayo
+        {
+            get => mayo;
+            set
+            {
+                mayo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mayo"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has bacon or not.
         /// </value>
-        public bool Bacon { get; set; } = true;
+        public bool Bacon
+        {
+            get => bacon;
+            set
+            {
+                bacon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bacon"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has eggs or not.
         /// </value>
-        public bool Egg { get; set; } = true;
+        public bool Egg
+        {
+            get => egg;
+            set
+            {
+                egg = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
+            }
+        }
 
         /// <summary>
         /// The price of the entree.
@@ -91,16 +188,16 @@ namespace BleakwindBuffet.Data.Entrees
             get
             {
                 var list = new List<string>();
-                if (!Bun) list.Add("Hold bun");
-                if (!Ketchup) list.Add("Hold ketchup");
-                if (!Mustard) list.Add("Hold mustard");
-                if (!Pickle) list.Add("Hold pickle");
-                if (!Cheese) list.Add("Hold cheese");
-                if (!Tomato) list.Add("Hold tomato");
-                if (!Lettuce) list.Add("Hold lettuce");
-                if (!Mayo) list.Add("Hold mayo");
-                if (!Bacon) list.Add("Hold bacon");
-                if (!Egg) list.Add("Hold egg");
+                if (!bun) list.Add("Hold bun");
+                if (!ketchup) list.Add("Hold ketchup");
+                if (!mustard) list.Add("Hold mustard");
+                if (!pickle) list.Add("Hold pickle");
+                if (!cheese) list.Add("Hold cheese");
+                if (!tomato) list.Add("Hold tomato");
+                if (!lettuce) list.Add("Hold lettuce");
+                if (!mayo) list.Add("Hold mayo");
+                if (!bacon) list.Add("Hold bacon");
+                if (!egg) list.Add("Hold egg");
 
                 return list;
             }

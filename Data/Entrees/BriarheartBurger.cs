@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data.Entrees
 {
@@ -14,32 +15,83 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with buns, ketchup, mustard, pickles, and cheese.
     /// </remarks>
-    public class BriarheartBurger : Entree, IOrderItem
+    public class BriarheartBurger : Entree, IOrderItem, INotifyPropertyChanged
     {
+        private bool bun = true;
+        private bool ketchup = true;
+        private bool mustard = true;
+        private bool pickle = true;
+        private bool cheese = true;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the entree has buns or not.
         /// </value>
-        public bool Bun { get; set; } = true;
+        public bool Bun
+        {
+            get => bun;
+            set
+            {
+                bun = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has ketchup or not.
         /// </value>
-        public bool Ketchup { get; set; } = true;
+        public bool Ketchup
+        {
+            get => ketchup;
+            set
+            {
+                ketchup = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has mustard or not.
         /// </value>
-        public bool Mustard { get; set; } = true;
+        public bool Mustard
+        {
+            get => mustard;
+            set
+            {
+                mustard = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has pickles or not.
         /// </value>
-        public bool Pickle { get; set; } = true;
+        public bool Pickle
+        {
+            get => pickle;
+            set
+            {
+                pickle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has cheese or not.
         /// </value>
-        public bool Cheese { get; set; } = true;
+        public bool Cheese
+        {
+            get => cheese;
+            set
+            {
+                cheese = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+            }
+        }
 
         /// <summary>
         /// The price of the entree.
@@ -65,11 +117,11 @@ namespace BleakwindBuffet.Data.Entrees
             get
             {
                 var list = new List<string>();
-                if (!Bun) list.Add("Hold bun");
-                if (!Ketchup) list.Add("Hold ketchup");
-                if (!Mustard) list.Add("Hold mustard");
-                if (!Pickle) list.Add("Hold pickle");
-                if (!Cheese) list.Add("Hold cheese");
+                if (!bun) list.Add("Hold bun");
+                if (!ketchup) list.Add("Hold ketchup");
+                if (!mustard) list.Add("Hold mustard");
+                if (!pickle) list.Add("Hold pickle");
+                if (!cheese) list.Add("Hold cheese");
 
                 return list;
             }

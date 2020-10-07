@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data.Entrees
 {
@@ -14,27 +15,69 @@ namespace BleakwindBuffet.Data.Entrees
     /// <remarks>
     /// Comes with sausage links, eggs, hashbrowns, and pancakes.
     /// </remarks>
-    public class SmokehouseSkeleton : Entree, IOrderItem
+    public class SmokehouseSkeleton : Entree, IOrderItem, INotifyPropertyChanged
     {
+        private bool sausageLink = true;
+        private bool egg = true;
+        private bool hashBrowns = true;
+        private bool pancake = true;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the entree has sausage links or not.
         /// </value>
-        public bool SausageLink { get; set; } = true;
+        public bool SausageLink
+        {
+            get => sausageLink;
+            set
+            {
+                sausageLink = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SausageLink"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has eggs or not.
         /// </value>
-        public bool Egg { get; set; } = true;
+        public bool Egg
+        {
+            get => egg;
+            set
+            {
+                egg = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has hash browns or not.
         /// </value>
-        public bool HashBrowns { get; set; } = true;
+        public bool HashBrowns
+        {
+            get => hashBrowns;
+            set
+            {
+                hashBrowns = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HashBrowns"));
+            }
+        }
 
         /// <value>
         /// Whether the entree has pancakes or not.
         /// </value>
-        public bool Pancake { get; set; } = true;
+        public bool Pancake
+        {
+            get => pancake;
+            set
+            {
+                pancake = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pancake"));
+            }
+        }
 
         /// <summary>
         /// The price of the entree.
@@ -60,10 +103,10 @@ namespace BleakwindBuffet.Data.Entrees
             get
             {
                 var list = new List<string>();
-                if (!SausageLink) list.Add("Hold sausage");
-                if (!Egg) list.Add("Hold eggs");
-                if (!HashBrowns) list.Add("Hold hash browns");
-                if (!Pancake) list.Add("Hold pancakes");
+                if (!sausageLink) list.Add("Hold sausage");
+                if (!egg) list.Add("Hold eggs");
+                if (!hashBrowns) list.Add("Hold hash browns");
+                if (!pancake) list.Add("Hold pancakes");
 
                 return list;
             }

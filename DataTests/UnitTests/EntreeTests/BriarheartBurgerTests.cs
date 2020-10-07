@@ -144,5 +144,85 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             var entree = new BriarheartBurger();
             Assert.Equal("Briarheart Burger", entree.ToString());
         }
+
+        [Fact]
+        public void ChangingBunNotifiesBunProperty()
+        {
+            var entree = new BriarheartBurger();
+
+            Assert.PropertyChanged(entree, "Bun", () =>
+            {
+                entree.Bun = true;
+            });
+
+            Assert.PropertyChanged(entree, "Bun", () =>
+            {
+                entree.Bun = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingKetchupNotifiesKetchupProperty()
+        {
+            var entree = new BriarheartBurger();
+
+            Assert.PropertyChanged(entree, "Ketchup", () =>
+            {
+                entree.Ketchup = true;
+            });
+
+            Assert.PropertyChanged(entree, "Ketchup", () =>
+            {
+                entree.Ketchup = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingMustardNotifiesMustardProperty()
+        {
+            var entree = new BriarheartBurger();
+
+            Assert.PropertyChanged(entree, "Mustard", () =>
+            {
+                entree.Mustard = true;
+            });
+
+            Assert.PropertyChanged(entree, "Mustard", () =>
+            {
+                entree.Mustard = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingPickleNotifiesPickleProperty()
+        {
+            var entree = new BriarheartBurger();
+
+            Assert.PropertyChanged(entree, "Pickle", () =>
+            {
+                entree.Pickle = true;
+            });
+
+            Assert.PropertyChanged(entree, "Pickle", () =>
+            {
+                entree.Pickle = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingCheeseNotifiesCheeseProperty()
+        {
+            var entree = new BriarheartBurger();
+
+            Assert.PropertyChanged(entree, "Cheese", () =>
+            {
+                entree.Cheese = true;
+            });
+
+            Assert.PropertyChanged(entree, "Cheese", () =>
+            {
+                entree.Cheese = false;
+            });
+        }
     }
 }

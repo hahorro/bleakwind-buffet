@@ -29,7 +29,10 @@ namespace PointOfSale
     /// </summary>
     public partial class ItemCustomizationComponent : UserControl
     {
-        public event RoutedEventHandler ExitCustomizationHandler;
+        /// <summary>
+        /// An event fired when exiting the customization window.
+        /// </summary>
+        public event RoutedEventHandler ExitCustomizationWindow;
 
         /// <summary>
         /// Initializes the ItemCustomizationComponent element.
@@ -39,10 +42,15 @@ namespace PointOfSale
             InitializeComponent();
         }
 
-        void ExitCustomization(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Invokes the exit customization window event.
+        /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="e">The arguments provided.</param>
+        void ExitWindow(object sender, RoutedEventArgs e)
         {
             // TODO: Clear all element control contents to be filled in next time
-            ExitCustomizationHandler?.Invoke(this, e);
+            ExitCustomizationWindow?.Invoke(this, e);
         }
     }
 }

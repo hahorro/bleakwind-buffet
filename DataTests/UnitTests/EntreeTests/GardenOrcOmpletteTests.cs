@@ -125,5 +125,69 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             var entree = new GardenOrcOmelette();
             Assert.Equal("Garden Orc Omelette", entree.ToString());
         }
+
+        [Fact]
+        public void ChangingBroccoliNotifiesBroccoliProperty()
+        {
+            var entree = new GardenOrcOmelette();
+
+            Assert.PropertyChanged(entree, "Broccoli", () =>
+            {
+                entree.Broccoli = true;
+            });
+
+            Assert.PropertyChanged(entree, "Broccoli", () =>
+            {
+                entree.Broccoli = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingMushroomsNotifiesMushroomsProperty()
+        {
+            var entree = new GardenOrcOmelette();
+
+            Assert.PropertyChanged(entree, "Mushrooms", () =>
+            {
+                entree.Mushrooms = true;
+            });
+
+            Assert.PropertyChanged(entree, "Mushrooms", () =>
+            {
+                entree.Mushrooms = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingTomatoNotifiesTomatoProperty()
+        {
+            var entree = new GardenOrcOmelette();
+
+            Assert.PropertyChanged(entree, "Tomato", () =>
+            {
+                entree.Tomato = true;
+            });
+
+            Assert.PropertyChanged(entree, "Tomato", () =>
+            {
+                entree.Tomato = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingCheddarNotifiesCheddarProperty()
+        {
+            var entree = new GardenOrcOmelette();
+
+            Assert.PropertyChanged(entree, "Cheddar", () =>
+            {
+                entree.Cheddar = true;
+            });
+
+            Assert.PropertyChanged(entree, "Cheddar", () =>
+            {
+                entree.Cheddar = false;
+            });
+        }
     }
 }

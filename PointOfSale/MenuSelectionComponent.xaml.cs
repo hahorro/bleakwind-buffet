@@ -27,12 +27,23 @@ namespace PointOfSale
     public partial class MenuSelectionComponent : UserControl
     {
         /// <summary>
+        /// An event fired when opening the customization window.
+        /// </summary>
+        public event RoutedEventHandler OpenCustomizationWindow;
+
+        /// <summary>
+        /// An event fired when exiting the customization window.
+        /// </summary>
+        public event RoutedEventHandler ExitCustomizationWindow;
+
+        /// <summary>
         /// Initializes the MenuSelectionComponent element.
         /// </summary>
         public MenuSelectionComponent()
         {
             InitializeComponent();
             itemCustomizationWindow.Visibility = Visibility.Hidden;
+            itemCustomizationWindow.ExitCustomizationWindow += CloseItemCustomization;
         }
 
         /// <summary>
@@ -53,6 +64,7 @@ namespace PointOfSale
         {
             itemCustomizationWindow.Visibility = Visibility.Visible;
             EnableSelection(false);
+            OpenCustomizationWindow?.Invoke(this, e);
         }
 
         /// <summary>
@@ -64,6 +76,7 @@ namespace PointOfSale
         {
             itemCustomizationWindow.Visibility = Visibility.Hidden;
             EnableSelection(true);
+            ExitCustomizationWindow?.Invoke(this, e);
         }
     }
 }

@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -15,17 +16,55 @@ namespace BleakwindBuffet.Data.Drinks
     /// <remarks>
     /// Comes in several flavors with or without ice.
     /// </remarks>
-    public class SailorSoda : Drink, IOrderItem
+    public class SailorSoda : Drink, IOrderItem, INotifyPropertyChanged
     {
+        private bool ice = true;
+        private SodaFlavor flavor = SodaFlavor.Cherry;
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <value>
         /// Whether the drink has ice or not.
         /// </value>
-        public bool Ice { get; set; } = true;
+        public bool Ice
+        {
+            get => ice;
+            set
+            {
+                ice = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+            }
+        }
 
         /// <value>
         /// The flavor of the drink.
         /// </value>
-        public SodaFlavor Flavor { get; set; } = SodaFlavor.Cherry;
+        public SodaFlavor Flavor
+        {
+            get => flavor;
+            set
+            {
+                flavor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Flavor"));
+            }
+        }
+
+        /// <value>
+        /// The size of the drink.
+        /// </value>
+        public override Size Size
+        {
+            get => size;
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
 
         /// <summary>
         /// The price of the drink.
@@ -37,7 +76,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 1.42;
                     case Size.Medium: return 1.74;
@@ -54,7 +93,7 @@ namespace BleakwindBuffet.Data.Drinks
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 117;
                     case Size.Medium: return 153;
@@ -75,7 +114,7 @@ namespace BleakwindBuffet.Data.Drinks
             get
             {
                 var list = new List<string>();
-                if (!Ice) list.Add("Hold ice");
+                if (!ice) list.Add("Hold ice");
 
                 return list;
             }
@@ -94,7 +133,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <returns>The string representing the drink.</returns>
         public override string ToString()
         {
-            return $"{Size} {Flavor} Sailor Soda";
+            return $"{size} {flavor} Sailor Soda";
         }
     }
 }

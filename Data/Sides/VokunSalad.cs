@@ -5,6 +5,7 @@
  */
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using BleakwindBuffet.Data.Enums;
 
 namespace BleakwindBuffet.Data.Sides
@@ -12,8 +13,28 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Represents a Vokun Salad.
     /// </summary>
-    public class VokunSalad : Side, IOrderItem
+    public class VokunSalad : Side, IOrderItem, INotifyPropertyChanged
     {
+        private Size size = Size.Small;
+
+        /// <summary>
+        /// An event fired when a property of this object changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <value>
+        /// The size of the side.
+        /// </value>
+        public override Size Size
+        {
+            get => size;
+            set
+            {
+                size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
+
         /// <summary>
         /// The price of the side.
         /// </summary>
@@ -24,7 +45,7 @@ namespace BleakwindBuffet.Data.Sides
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 0.93;
                     case Size.Medium: return 1.28;
@@ -41,7 +62,7 @@ namespace BleakwindBuffet.Data.Sides
         {
             get
             {
-                switch (Size)
+                switch (size)
                 {
                     case Size.Small: return 41;
                     case Size.Medium: return 52;
@@ -72,7 +93,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <returns>The string representing the side.</returns>
         public override string ToString()
         {
-            return $"{Size} Vokun Salad";
+            return $"{size} Vokun Salad";
         }
     }
 }
