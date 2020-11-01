@@ -4,6 +4,8 @@
  * Purpose: Static class used to represent the menu of items
  */
 
+using System;
+using System.Reflection;
 using System.Collections.Generic;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
@@ -23,6 +25,7 @@ namespace BleakwindBuffet.Data
         /// <returns>The list of entrees.</returns>
         public static IEnumerable<IOrderItem> Entrees()
         {
+            //var classes = Assembly.GetExecutingAssembly().GetTypes();
             var entrees = new List<IOrderItem>
             {
                 new BriarheartBurger(),
@@ -33,6 +36,19 @@ namespace BleakwindBuffet.Data
                 new ThalmorTriple(),
                 new ThugsTBone()
             };
+
+            //var entrees = new List<IOrderItem>();
+
+            //foreach(Type t in classes)
+            //{
+            //    if (t.Namespace == "BleakwindBuffet.Data.Entrees")
+            //    {
+            //        if (typeof(Entree).IsAssignableFrom(t))
+            //        {
+            //            entrees.Add(t as IOrderItem);
+            //        }
+            //    }
+            //}
 
             return entrees;
         }
