@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data;
+using BleakwindBuffet.Data.Enums;
 
 namespace Website.Pages
 {
@@ -32,22 +33,41 @@ namespace Website.Pages
             All
         }
 
-        public List<IOrderItem> GetItems(OrderType type)
+        public List<String> GetItems(OrderType type)
         {
-            IEnumerable<IOrderItem> items = null;
+            IEnumerable<IOrderItem> list = null;
+            var items = new List<String>();
+
             switch(type)
             {
                 case OrderType.Entree:
-                    items = Menu.Entrees();
+                    list = Menu.Entrees();
                     break;
                 case OrderType.Side:
-                    items = Menu.Sides();
+                    list = Menu.Sides();
                     break;
                 case OrderType.Drink:
-                    items = Menu.Drinks();
+                    list = Menu.Drinks();
+                    break;
+                case OrderType.All:
+                    list = Menu.FullMenu();
                     break;
             }
-            return items as List<IOrderItem>;
+            foreach (IOrderItem item in list)
+            {
+                items.Add($"{item}, ${item.Price}, {item.Calories} kcals");
+            }
+            return items;
+        }
+
+        public List<String> SailorSodaFlavors()
+        {
+            var list = new List<string>();
+            foreach(SodaFlavor flavor in Enum.GetValues(typeof(SodaFlavor)))
+            {
+                list.Add(flavor.ToString());
+            }
+            return list;
         }
     }
 }

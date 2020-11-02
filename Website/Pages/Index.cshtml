@@ -8,18 +8,39 @@
     <h1 class="display-4">Bleakwind Buffet</h1>
     <p>We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your dagger. Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!</p>
 </div>
-
+<hr />
+<p class="discount-notice">Combining any entree, side, and drink into a combo includes a $1 discount off the order.</p>
+<hr />
 <h2 class="menu-items">Entrees</h2>
-<div class="menu-item">
-
-</div>
+@foreach (String item in Model.GetItems(IndexModel.OrderType.Entree))
+{
+    <div class="menu-item">
+        @item
+    </div>
+}
+<br />
 <h2 class="menu-items">Sides</h2>
-<div class="menu-item">
-
-</div>
+@foreach (String item in Model.GetItems(IndexModel.OrderType.Side))
+{
+    <div class="menu-item">
+        @item
+    </div>
+}
+<br />
 <h2 class="menu-items">Drinks</h2>
-<div class="menu-item">
-
-</div>
-<i>Combining any entree, side, and drink into a combo includes a $1 discount off the order.</i>
-<p>Sailor Soda Flavors</p>
+@foreach (String item in Model.GetItems(IndexModel.OrderType.Drink))
+{
+    <div class="menu-item">
+        @item
+    </div>
+}
+<hr />
+<h5>Sailor Soda Flavors</h5>
+<ul>
+    @foreach (string flavor in Model.SailorSodaFlavors())
+    {
+        <li>
+            @flavor
+        </li>
+    }
+</ul>
