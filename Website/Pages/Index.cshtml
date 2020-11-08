@@ -8,39 +8,69 @@
     <h1 class="display-4">Bleakwind Buffet</h1>
     <p>We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your dagger. Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it with us!</p>
 </div>
+
 <hr />
-<p class="discount-notice">Combining any entree, side, and drink into a combo includes a $1 discount off the order.</p>
+
+<p class="discount-notice">Combining any entree, side, and drink includes a $1 discount off the order.</p>
+
 <hr />
-<h2 class="menu-items">Entrees</h2>
-@foreach (String item in Model.GetItems(IndexModel.OrderType.Entree))
-{
-    <div class="menu-item">
-        @item
+
+<form id="menu">
+    <div id="search-filters">
+        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+        <input type="submit" value="Search">
+
+        <label>Calories</label>
+        <input type="range" name="caloriesInput" id="calories" value="500" min="0" max="1000" step="10" oninput="caloriesDisplay.value = calories.value">
+        <output name="caloriesOutput" id="caloriesDisplay">500</output> kcals
+
+        <label>Price</label>
+        <input type="range" name="priceInput" id="price" value="5.00" min="0" max="10" step="0.1" oninput="priceDisplay.value = price.value">
+        $<output name="priceOutput" id="priceDisplay">5.00</output>
     </div>
-}
-<br />
-<h2 class="menu-items">Sides</h2>
-@foreach (String item in Model.GetItems(IndexModel.OrderType.Side))
-{
-    <div class="menu-item">
-        @item
-    </div>
-}
-<br />
-<h2 class="menu-items">Drinks</h2>
-@foreach (String item in Model.GetItems(IndexModel.OrderType.Drink))
-{
-    <div class="menu-item">
-        @item
-    </div>
-}
-<hr />
-<h5>Sailor Soda Flavors</h5>
-<ul>
-    @foreach (string flavor in Model.SailorSodaFlavors())
+    <br />
+    @if (!String.IsNullOrEmpty(Model.SearchTerms))
     {
-        <li>
-            @flavor
-        </li>
+        <h2 class="result-count">42 results</h2>
+        // TODO: make stuff happen here
     }
-</ul>
+    else
+    {
+        // Display full menu and Sailor Soda flavors
+        <div id="results">
+            <h2 class="menu-items">Entrees</h2>
+            @foreach (String item in Model.GetItems(IndexModel.OrderType.Entree))
+            {
+                <div class="menu-item">
+                    @item
+                </div>
+            }
+            <br />
+            <h2 class="menu-items">Sides</h2>
+            @foreach (String item in Model.GetItems(IndexModel.OrderType.Side))
+            {
+                <div class="menu-item">
+                    @item
+                </div>
+            }
+            <br />
+            <h2 class="menu-items">Drinks</h2>
+            @foreach (String item in Model.GetItems(IndexModel.OrderType.Drink))
+            {
+                <div class="menu-item">
+                    @item
+                </div>
+            }
+        </div>
+        <hr />
+        <h5>Sailor Soda Flavors</h5>
+        <ul>
+            @foreach (string flavor in Model.SailorSodaFlavors())
+            {
+                <li>
+                    @flavor
+                </li>
+            }
+        </ul>
+    }
+</form>

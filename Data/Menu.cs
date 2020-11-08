@@ -20,6 +20,19 @@ namespace BleakwindBuffet.Data
     public static class Menu
     {
         /// <summary>
+        /// Gets the possible order types
+        /// </summary>
+        public static string[] OrderTypes
+        {
+            get => new string[]
+            {
+            "Entree",
+            "Side",
+            "Drink"
+            };
+        }
+
+        /// <summary>
         /// Returns a list of entrees.
         /// </summary>
         /// <returns>The list of entrees.</returns>
@@ -88,7 +101,7 @@ namespace BleakwindBuffet.Data
             var drinks = new List<IOrderItem>
             {
                 // Without object initializer, the size defaults to small.
-                // SailorSoda's flavor defaults to cherry if not within
+                // Soda flavor defaults to cherry if not specified inside
                 // the object initializer.
                 new AretinoAppleJuice(),
                 new AretinoAppleJuice() { Size = Size.Medium },
@@ -147,6 +160,30 @@ namespace BleakwindBuffet.Data
             }
 
             return fullMenu;
+        }
+
+        /// <summary>
+        /// Searches the menu for matching items
+        /// </summary>
+        /// <param name="terms">The terms to search for</param>
+        /// <returns>A collection of menu items</returns>
+        public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> menu, string terms)
+        {
+            var results = new List<IOrderItem>();
+
+            // Return all menu items if search is blank
+            if (terms == null) return menu;
+
+            // Check ToString method return value
+            foreach (IOrderItem item in menu)
+            {
+                if (item.ToString().Contains(terms))
+                {
+                    results.Add(item);
+                }
+            }
+
+            return results;
         }
     }
 }
