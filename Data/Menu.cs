@@ -5,7 +5,7 @@
  */
 
 using System;
-using System.Reflection;
+// using System.Reflection;
 using System.Collections.Generic;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Sides;
@@ -165,6 +165,7 @@ namespace BleakwindBuffet.Data
         /// <summary>
         /// Searches the menu for matching items
         /// </summary>
+        /// <param name="menu">The collection of menu items</param>
         /// <param name="terms">The terms to search for</param>
         /// <returns>A collection of menu items</returns>
         public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> menu, string terms)
@@ -177,12 +178,106 @@ namespace BleakwindBuffet.Data
             // Check ToString method return value
             foreach (IOrderItem item in menu)
             {
-                if (item.ToString().Contains(terms))
+                if (item.ToString().Contains(terms, StringComparison.InvariantCultureIgnoreCase))
                 {
                     results.Add(item);
                 }
             }
 
+            return results;
+        }
+
+        /// <summary>
+        /// Filters range of calories
+        /// </summary>
+        /// <param name="movies">The collection of menu items</param>
+        /// <param name="min">The minimum range value</param>
+        /// <param name="max">The maximum range value</param>
+        /// <returns>The filtered menu item collection</returns>
+        public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> menu, int? min, int? max)
+        {
+            if (min == null && max == null) return menu;
+
+            var results = new List<IOrderItem>();
+
+            // check for proper range applied
+            if (min > max) return results;
+
+            // only a maximum specified
+            if (min == null)
+            {
+                foreach (IOrderItem item in menu)
+                {
+                    if (item.Calories <= max) results.Add(item);
+                }
+                return results;
+            }
+
+            // only a minimum specified
+            if (max == null)
+            {
+                foreach (IOrderItem item in menu)
+                {
+                    if (item.Calories >= min) results.Add(item);
+                }
+                return results;
+            }
+
+            // Both minimum and maximum specified
+            foreach (IOrderItem item in menu)
+            {
+                if (item.Calories >= min && item.Calories <= max)
+                {
+                    results.Add(item);
+                }
+            }
+            return results;
+        }
+
+        /// <summary>
+        /// Filters range of prices
+        /// </summary>
+        /// <param name="movies">The collection of menu items</param>
+        /// <param name="min">The minimum range value</param>
+        /// <param name="max">The maximum range value</param>
+        /// <returns>The filtered menu item collection</returns>
+        public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> menu, double? min, double? max)
+        {
+            if (min == null && max == null) return menu;
+
+            var results = new List<IOrderItem>();
+
+            // check for proper range applied
+            if (min > max) return results;
+
+            // only a maximum specified
+            if (min == null)
+            {
+                foreach (IOrderItem item in menu)
+                {
+                    if (item.Price <= max) results.Add(item);
+                }
+                return results;
+            }
+
+            // only a minimum specified
+            if (max == null)
+            {
+                foreach (IOrderItem item in menu)
+                {
+                    if (item.Price >= min) results.Add(item);
+                }
+                return results;
+            }
+
+            // Both minimum and maximum specified
+            foreach (IOrderItem item in menu)
+            {
+                if (item.Price >= min && item.Price <= max)
+                {
+                    results.Add(item);
+                }
+            }
             return results;
         }
     }

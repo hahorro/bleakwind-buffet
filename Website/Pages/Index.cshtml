@@ -54,16 +54,20 @@
     <hr />
     @if (!String.IsNullOrEmpty(Model.SearchTerms))
     {
-        <h2 class="result-count">Results</h2>
+        <h2 class="result-count">Search Results</h2>
 
         @if (Model.MenuItems.Count() > 0)
         {
-            <p>Found matches</p>
-            // TODO: actually print list of items
+            foreach (String item in Model.GetItems(IndexModel.OrderType.All))
+            {
+                <div class="menu-item">
+                    @item
+                </div>
+            }
         }
         else
         {
-            <p>No matches</p>
+            <p>No results found</p>
         }
     }
     else
@@ -74,7 +78,7 @@
             @foreach (String item in Model.GetItems(IndexModel.OrderType.Entree))
             {
                 <div class="menu-item">
-                    @item
+                    @(!String.IsNullOrEmpty(item) ? item : "None")
                 </div>
             }
             <br />
@@ -82,7 +86,7 @@
             @foreach (String item in Model.GetItems(IndexModel.OrderType.Side))
             {
                 <div class="menu-item">
-                    @item
+                    @(!String.IsNullOrEmpty(item) ? item : "None")
                 </div>
             }
             <br />
@@ -90,7 +94,7 @@
             @foreach (String item in Model.GetItems(IndexModel.OrderType.Drink))
             {
                 <div class="menu-item">
-                    @item
+                    @(!String.IsNullOrEmpty(item) ? item : "None")
                 </div>
             }
         </div>

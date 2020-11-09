@@ -11,13 +11,6 @@ namespace Website.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
         public int MaxCalories = 1000;
         public double MaxPrice = 10.0;
 
@@ -42,13 +35,13 @@ namespace Website.Pages
         /// The filtered minimum calories
         /// </summary>
         [BindProperty(SupportsGet = true)]
-        public double CaloriesMin { get; set; } = 0;
+        public int CaloriesMin { get; set; } = 0;
 
         /// <summary>
         /// The filtered maximum calories
         /// </summary>
         [BindProperty(SupportsGet = true)]
-        public double CaloriesMax { get; set; } = 1000;
+        public int CaloriesMax { get; set; } = 1000;
 
         /// <summary>
         /// The filtered minimum price
@@ -68,9 +61,9 @@ namespace Website.Pages
         public void OnGet()
         {
             MenuItems = Data.Menu.Search(Data.Menu.FullMenu(), SearchTerms);
+            MenuItems = Data.Menu.FilterByCalories(MenuItems, CaloriesMin, CaloriesMax);
+            MenuItems = Data.Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
         }
-
-        // everything else below here is deprecated
 
         /// <summary>
         /// Order types from menu
@@ -90,28 +83,18 @@ namespace Website.Pages
         /// <returns>The string list of items</returns>
         public List<String> GetItems(OrderType type)
         {
-            IEnumerable<Data.IOrderItem> list = null;
             var items = new List<String>();
 
-            switch(type)
+            foreach(Data.IOrderItem item in MenuItems)
             {
-                case OrderType.Entree:
-                    list = Data.Menu.Entrees();
-                    break;
-                case OrderType.Side:
-                    list = Data.Menu.Sides();
-                    break;
-                case OrderType.Drink:
-                    list = Data.Menu.Drinks();
-                    break;
-                case OrderType.All:
-                    list = Data.Menu.FullMenu();
-                    break;
-            }
-
-            foreach(Data.IOrderItem item in list)
-            {
-                items.Add($"{item}, ${item.Price}, {item.Calories} kcals");
+                if ((type == OrderType.Entree) && (item is Data.Entrees.Entree) ||
+                    (type == OrderType.Side) && (item is Data.Sides.Side) ||
+                    (type == OrderType.Drink) && (item is Data.Drinks.Drink) ||
+                    (type == OrderType.All)
+                    )
+                {
+                    items.Add($"{item}, ${item.Price}, {item.Calories} kcals");
+                }
             }
             return items;
         }
