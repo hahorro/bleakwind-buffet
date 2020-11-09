@@ -16,23 +16,55 @@
 <hr />
 
 <form id="menu">
-    <div id="search-filters">
-        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
-        <input type="submit" value="Search">
-
-        <label>Calories</label>
-        <input type="range" name="caloriesInput" id="calories" value="500" min="0" max="1000" step="10" oninput="caloriesDisplay.value = calories.value">
-        <output name="caloriesOutput" id="caloriesDisplay">500</output> kcals
-
-        <label>Price</label>
-        <input type="range" name="priceInput" id="price" value="5.00" min="0" max="10" step="0.1" oninput="priceDisplay.value = price.value">
-        $<output name="priceOutput" id="priceDisplay">5.00</output>
+    <div id="filters">
+        <div id="filter-search">
+            <h4>Filter</h4>
+            <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+            <input type="submit" value="Search">
+        </div>
+        <br />
+        <div id="filter-calories">
+            <p class="filter-header">Calories</p>
+            <div>
+                <label>Min</label>
+                <input type="range" name="CaloriesMin" id="caloriesMin" value="@Model.CaloriesMin" min="0" max="@Model.MaxCalories" step="10" oninput="caloriesMinDisplay.value = caloriesMin.value">
+                <output id="caloriesMinDisplay">@Model.CaloriesMin</output> kcals
+            </div>
+            <div>
+                <label>Max</label>
+                <input type="range" name="CaloriesMax" id="caloriesMax" value="@Model.CaloriesMax" min="0" max="@Model.MaxCalories" step="10" oninput="caloriesMaxDisplay.value = caloriesMax.value">
+                <output id="caloriesMaxDisplay">@Model.CaloriesMax</output> kcals
+            </div>
+        </div>
+        <br />
+        <div id="filter-price">
+            <p class="filter-header">Price</p>
+            <div>
+                <label>Min</label>
+                <input type="range" name="PriceMin" id="priceMin" value="@Model.PriceMin" min="0" max="@Model.MaxPrice" step="0.1" oninput="priceMinDisplay.value = priceMin.value">
+                $<output id="priceMinDisplay">@Model.PriceMin</output>
+            </div>
+            <div>
+                <label>Max</label>
+                <input type="range" name="PriceMax" id="priceMax" value="@Model.PriceMax" min="0" max="@Model.MaxPrice" step="0.1" oninput="priceMaxDisplay.value = priceMax.value">
+                $<output id="priceMaxDisplay">@Model.PriceMax</output>
+            </div>
+        </div>
     </div>
-    <br />
+    <hr />
     @if (!String.IsNullOrEmpty(Model.SearchTerms))
     {
-        <h2 class="result-count">42 results</h2>
-        // TODO: make stuff happen here
+        <h2 class="result-count">Results</h2>
+
+        @if (Model.MenuItems.Count() > 0)
+        {
+            <p>Found matches</p>
+            // TODO: actually print list of items
+        }
+        else
+        {
+            <p>No matches</p>
+        }
     }
     else
     {

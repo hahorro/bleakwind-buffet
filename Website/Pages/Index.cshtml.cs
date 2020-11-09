@@ -9,7 +9,6 @@ using Data = BleakwindBuffet.Data;
 
 namespace Website.Pages
 {
-    [BindProperties(SupportsGet = true)]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -18,6 +17,9 @@ namespace Website.Pages
         {
             _logger = logger;
         }
+
+        public int MaxCalories = 1000;
+        public double MaxPrice = 10.0;
 
         /// <summary>
         /// The items to display on the index page 
@@ -33,8 +35,42 @@ namespace Website.Pages
         /// <summary>
         /// The filtered order types
         /// </summary>
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public string[] Types { get; set; }
+
+        /// <summary>
+        /// The filtered minimum calories
+        /// </summary>
+        [BindProperty(SupportsGet = true)]
+        public double CaloriesMin { get; set; } = 0;
+
+        /// <summary>
+        /// The filtered maximum calories
+        /// </summary>
+        [BindProperty(SupportsGet = true)]
+        public double CaloriesMax { get; set; } = 1000;
+
+        /// <summary>
+        /// The filtered minimum price
+        /// </summary>
+        [BindProperty(SupportsGet = true)]
+        public double PriceMin { get; set; } = 0.0;
+
+        /// <summary>
+        /// The filtered maximum price
+        /// </summary>
+        [BindProperty(SupportsGet = true)]
+        public double PriceMax { get; set; } = 10.0;
+
+        /// <summary>
+        /// GET request
+        /// </summary>
+        public void OnGet()
+        {
+            MenuItems = Data.Menu.Search(Data.Menu.FullMenu(), SearchTerms);
+        }
+
+        // everything else below here is deprecated
 
         /// <summary>
         /// Order types from menu
@@ -45,11 +81,6 @@ namespace Website.Pages
             Side,
             Drink,
             All
-        }
-
-        public void OnGet()
-        {
-            MenuItems = Data.Menu.Search(Data.Menu.FullMenu(), SearchTerms);
         }
 
         /// <summary>

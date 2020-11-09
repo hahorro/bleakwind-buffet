@@ -75,3 +75,7 @@ body {
 p.discount-notice {
     font-style: italic;
 }
+
+p.filter-header {
+    font-weight: bold;
+}
